@@ -45,7 +45,7 @@ describe('03_separation-of-concerns-demo routes', () => {
 
 
 
-it('creates a new order in our database and sends a text message', () => {
+it('gets all orders from our database', () => {
   return request(app)
     .get('/api/v1/orders')
     .then((res) => {
@@ -53,6 +53,17 @@ it('creates a new order in our database and sends a text message', () => {
         id: '1',
         quantity: 10,
       }]);
+    });
+});
+
+it('gets an order in our database by ID', () => {
+  return request(app)
+    .get('/api/v1/orders/1')
+    .then((res) => {
+      expect(res.body).toEqual({
+        id: '1',
+        quantity: 10,
+      });
     });
 });
 });
