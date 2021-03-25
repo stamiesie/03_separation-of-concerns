@@ -66,4 +66,27 @@ it('gets an order in our database by ID', () => {
       });
     });
 });
+
+it('updates an order in our database by ID', () => {
+  return request(app)
+    .put('/api/v1/orders/1')
+    .send(({quantity: 5}))
+    .then((res) => {
+      expect(res.body).toEqual({
+        id: '1',
+        quantity: 5,
+      });
+    });
+});
+
+it('deletes an order in our database by ID', () => {
+  return request(app)
+    .delete('/api/v1/orders/1')
+    .then((res) => {
+      expect(res.body).toEqual({
+        id: '1',
+        quantity: 10,
+      });
+    });
+});
 });
